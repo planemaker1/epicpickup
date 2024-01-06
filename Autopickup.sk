@@ -1,0 +1,19 @@
+options:
+	prefix: &cAutopickup
+
+on break:
+	if {autopickup.player} is true:
+		cancel drops
+		give drops of block using tool to player
+		set event-block to air
+		
+
+command /autopickup:
+	permission: autpickup.autopickup, autopickup
+    trigger:
+        if {autopickup.player} ? false = false:
+            set {autopickup.player} to true
+            send "{@prefix} » &fEnabled"
+        else if {autopickup.player} ? false = true:
+            set {autopickup.player} to false
+            send "{@prefix} » &fDisabled"
